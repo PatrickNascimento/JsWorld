@@ -1,0 +1,33 @@
+
+<script src="https://cdn.jsdelivr.net/npm/js-cookie@rc/dist/js.cookie.min.js"></script>
+
+<script>	
+	// Na linha abaixo, você deve incluir os prefixos do navegador que você vai testar.
+window.indexedDB = window.indexedDB || window.mozIndexedDB || window.webkitIndexedDB || window.msIndexedDB;
+window.IDBTransaction = window.IDBTransaction || window.webkitIDBTransaction || window.msIDBTransaction;
+window.IDBKeyRange = window.IDBKeyRange || window.webkitIDBKeyRange || window.msIDBKeyRange;
+
+          var request = indexedDB.open("synker");
+          var db;
+          request.onupgradeneeded = function() {
+          // The database did not previously exist, so create object stores and indexes.
+          db = request.result;
+          var store = db.createObjectStore("notes", {keyPath: "ID"});
+          store.createIndex("content","content", { unique: false });
+          store.createIndex("content2","content2", { unique: false });
+          store.createIndex("content3","content3", { unique: false });
+        };
+
+        request.onsuccess = function() {
+          db = request.result;
+        };
+
+        function addData(data)  {
+            var tx = db.transaction("notes", "readwrite");
+            var store = tx.objectStore("notes");
+            store.put({content: data, ID:1});
+            store.put({content2: data, ID:1});
+            store.put({content3: data, ID:1});
+        }
+
+</script>
