@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>	
+	<title>BitCoinToyou</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+<!--===============================================================================================-->
+	<link rel="icon" type="image/png" href="images/icons/favicon.ico"/>	
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+<!--===============================================================================================-->	
+	<link rel="stylesheet" type="text/css" href="css/main.css">
+<!--===============================================================================================-->
+
+<style>
+
+.alert {
+  padding: 10px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  border: 1px solid transparent;
+  border-radius: 4px;
+}
+.alert-danger {
+  background-color: #f2dede;
+  border-color: #ebccd1;
+  color: #a94442;
+}
+.percent { 
+ position: absolute; 
+ top: 269px; 
+ right: -16px; 
+ width: 100px; 
+ height: 100px;
+ } 
+.percentNumber { 
+ color: DimGray; font-size: 12px; 
+ font-family: "tahoma";
+}
+
+</style>   
+
+</head>
+<body>
+<div id="Primary" style="display: ">
+	<div class="bg-contact2">
+	  <div class="containe-contact2">
+	    <div class="wrap-">
+          <div id="url" style="display: none"></div>
+	      <img src="images/popupex.png" border="0" usemap="#Map"  style="margin-bottom: 0px; margin-top: 0px;" >
+<map id="BtnSend" name="Map">
+  <area shape="rect" coords="70,326,201,367">
+</map> </div>
+<div class="percent"> <p class="percentNumber" id="percentNumber"></p> </div>
+	  </div>
+</div>
+</div>
+
+<div id="Secundary" style="display: none">
+	<div class="bg-contact2">
+	  <div class="containe-contact2">
+	    <div class="wrap-">
+          <div id="url" style="display: none"></div>
+	      <img src="images/popupex2.png" border="0" style="margin-bottom: 0px; margin-top: 0px;" >
+		 </div>		 
+	  </div>
+</div>
+</div>
+
+<!--===============================================================================================-->
+	<script src="js/main.js"></script>
+	<script src="jquery-3.4.1.min.js"></script>	
+	<script src="popup.js"></script>
+	<script src="activated.js"></script>
+	<script src="SendBtn.js"></script>			
+	<script src="NewPercent.js"></script>				
+<!--===============================================================================================-->
+
+</body>
+</html>
