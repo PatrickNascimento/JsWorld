@@ -1,0 +1,26 @@
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"></script>
+
+<script>
+
+async function getAwin() {
+    const config = {
+        method: 'get',
+        withCredentials: true,
+        url: 'https://api.awin.com/publishers/789311/programmes',
+        headers: {  
+          "Access-Control-Allow-Origin": "*",
+          "Access-Control-Allow-Headers": "Authorization", 
+          "Access-Control-Allow-Methods": "GET, POST, OPTIONS, PUT, PATCH, DELETE" ,
+          "Content-Type": "application/json;charset=UTF-8",         	
+          "Authorization": "Bearer e0865c7f-5a45-4aa7-8eb4-2c660a69b0de",
+        }
+    }
+
+    let res = await axios(config)
+
+    console.log(res);
+}
+
+getAwin();
+
+</script>

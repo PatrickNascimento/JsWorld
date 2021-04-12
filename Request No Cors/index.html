@@ -1,0 +1,27 @@
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<script>
+
+var url = 'https://api.awin.com/publishers/789311/programmes';
+var proxy = 'https://cors-anywhere.herokuapp.com/';
+var urlWithProxy = proxy + url;
+
+var settings = {      
+  "url": urlWithProxy ,
+  "method": "GET",
+  "timeout": 0,
+  "headers": {
+    "Authorization": "Bearer e0865c7f-5a45-4aa7-8eb4-2c660a69b0de",
+    "accept": "application/json",
+    "Access-Control-Allow-Origin":"*"
+  },
+};
+
+$.ajax(settings).done (function( data ) {
+    console.log(data);
+});
+
+</script>
+
+INIT
+
