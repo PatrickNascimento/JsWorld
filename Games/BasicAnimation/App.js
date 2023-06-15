@@ -12,15 +12,7 @@ console.log(height)
 export default () => {
   return (
     <View style={styles.container}>      
-      <_animate duration={100} />
-      <_animate duration={100} />
-      <_animate duration={100} />
-      <_animate duration={100} />
-      <_animate duration={100} />
-      <_animate duration={100} />
-      <_animate duration={100} />
-      <_animate duration={100} />
-      <_animate duration={100} />
+      <_animate/>     
     </View>
   );
 };
