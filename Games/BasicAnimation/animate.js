@@ -1,97 +1,40 @@
-import React, { Component } from 'react';
-import { View, Animated, StyleSheet, Dimensions } from 'react-native';
+import React, { useRef, useEffect } from 'react';
+import { Animated, Image, View, Dimensions } from 'react-native';
 
-const { width, height } = Dimensions.get('window');
+export default function _animate(props) {
+  const { duration } = props;
+  const deviceWidth = Dimensions.get('window').width;
+  const deviceHeight = Dimensions.get('window').height;
 
-export default class _animate extends Component {
-  constructor(props) {
-    super(props);
-    
-    this.animationValue = new Animated.Value(0);
+  const position = useRef(new Animated.ValueXY()).current;
 
-    this.ballPosition = {
-      x: width / 2,
-      y: height / 2,
+  useEffect(() => {
+    const moveAnimation = () => {
+      const toValueX = Math.random() * (deviceWidth - 20);
+      const toValueY = Math.random() * (deviceHeight - 20);
+
+      Animated.timing(position, {
+        toValue: { x: toValueX, y: toValueY },
+        duration: duration,
+        useNativeDriver: true,
+      }).start(() => {
+        moveAnimation();
+      });
     };
-    
-    this.ballRadius = 20;
-    this.paddleWidth = 0;
-    this.paddleHeight = 80;
-    this.tableWidth = 300;
-    this.tableHeight = 300;
-  }
 
-  componentDidMount() {
-    this.startAnimation();
-  }
+    moveAnimation();
+  }, [position, duration, deviceWidth, deviceHeight]);
 
-  startAnimation = () => {
-    Animated.loop(
-      Animated.sequence([
-        Animated.timing(this.animationValue, {
-          toValue: 1,
-          duration: 1000,
-          useNativeDriver: true,
-        }),
-        Animated.timing(this.animationValue, {
-          toValue: 0,
-          duration: 1000,
-          useNativeDriver: true,
-        }),
-      ])
-    ).start();
-  };
-
-  render() {
-    const paddleTranslateY = this.animationValue.interpolate({
-      inputRange: [0, 1],
-      outputRange: [0, this.tableHeight - this.paddleHeight],
-    });
-
-    const ballTranslateX = this.animationValue.interpolate({
-      inputRange: [0, 1],
-      outputRange: [this.paddleWidth + this.ballRadius, this.tableWidth - this.ballRadius],
-    });
-
-    return (
-      <View style={styles.container}>
-        <View style={styles.pongTable}>
-          <Animated.View style={[styles.paddle, { transform: [{ translateY: paddleTranslateY }] }]} />
-          <Animated.View
-            style={[
-              styles.ball,
-              { transform: [{ translateX: ballTranslateX }, { translateY: this.ballPosition.y - this.ballRadius }] },
-            ]}
-          />
-        </View>
-      </View>
-    );
-  }
+  return (
+    <View>
+      <Animated.Image
+        source={require('./assets/ball.png')}
+        style={{
+          width: 20,
+          height: 20,
+          transform: position.getTranslateTransform(),
+        }}
+      />
+    </View>
+  );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  pongTable: {
-    width: 300,
-    height: 300,
-    borderWidth: 1,
-    borderColor: 'black',
-  },
-  paddle: {
-    position: 'absolute',
-    width: 10,
-    height: 80,
-    backgroundColor: 'blue',
-  },
-  ball: {
-    position: 'absolute',
-    width: 20,
-    height: 20,
-    backgroundColor: 'red',
-    borderRadius: 10,
-  },
-});
