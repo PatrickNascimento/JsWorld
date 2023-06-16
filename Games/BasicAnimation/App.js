@@ -4,7 +4,7 @@ import { Dimensions } from 'react-native';
 
 const { width, height } = Dimensions.get('window');
 import { _FadeIn } from "./fadeIn";
-import  _animate  from "./animate";
+import  AnimatedImage  from "./animate";
 
 
 console.log(height)
@@ -12,7 +12,11 @@ console.log(height)
 export default () => {
   return (
     <View style={styles.container}>      
-      <_animate/>     
+      <AnimatedImage durationX={11000} durationY={9500}/>     
+      <AnimatedImage durationX={11900} durationY={7400}/>     
+      <AnimatedImage durationX={7800} durationY={6500}/>     
+      <AnimatedImage durationX={11700} durationY={11200}/>     
+      <AnimatedImage durationX={11300} durationY={11900}/>     
     </View>
   );
 };
